@@ -8,5 +8,9 @@ export default new VueRouter({
             path: '/departments',
             component: require('./pages/departments/Index.vue'),
         },
+        {
+            path: '/departments/:id',
+            component: require('./pages/departments/Detail.vue'),
+        },
     ],
 });

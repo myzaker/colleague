@@ -14,6 +14,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Department::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->company,
+        'name'        => $faker->company,
+        'description' => $faker->paragraph,
     ];
 });
