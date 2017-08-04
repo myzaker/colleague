@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('{view}', function () {
+    return view('app');
+})->where('view', '(.*)');

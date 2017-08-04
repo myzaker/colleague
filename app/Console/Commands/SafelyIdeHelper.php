@@ -41,7 +41,7 @@ class SafelyIdeHelper extends Command
         try {
             \Artisan::call('ide-helper:generate');
             \Artisan::call('ide-helper:meta');
-            // \Artisan::call('ide-helper:models -N');
+            \Artisan::call('ide-helper:models -N');
         } catch (CommandNotFoundException $e) {
             // Do nothing
         }
