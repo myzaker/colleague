@@ -1,7 +1,7 @@
 <template>
     <div>
         <router-link class="card-list"
-                     v-for="department in department"
+                     v-for="department in departments"
                      :key="department.id"
                      :to="'/departments/' + department.id">
             <el-card>
@@ -9,13 +9,7 @@
             </el-card>
         </router-link>
 
-        <a class="card-list"
-           href="javascript:void(0)"
-           @click="dialogFormVisible = true">
-            <el-card>
-                <i class="el-icon-plus"></i>
-            </el-card>
-        </a>
+        <add-card-button @click.native="dialogFormVisible = true"/>
 
         <el-dialog title="添加部门"
                    :visible.sync="dialogFormVisible">
@@ -33,7 +27,7 @@
 
         data () {
             return {
-                department: [],
+                departments: [],
             };
         },
 
@@ -44,7 +38,7 @@
         methods: {
             loadDepartments () {
                 axios.get(laroute.route('departments.index')).then((response) => {
-                    this.department = response.data;
+                    this.departments = response.data;
                 });
             },
         },

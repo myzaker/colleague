@@ -35,7 +35,7 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Staff::create($request->all());
     }
 
     /**
@@ -74,7 +74,7 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Staff::find($id)->update($request->all());
     }
 
     /**
