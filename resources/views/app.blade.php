@@ -15,9 +15,11 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-    <img id="brand" src="http://zkres.myzaker.com/static/zaker_web2/img/logo.png?v=20170726">
-
     <div id="app">
+        <router-link id="brand" to="/">
+            <img src="http://zkres.myzaker.com/static/zaker_web2/img/logo.png?v=20170726">
+        </router-link>
+
         <el-row type="flex" justify="center">
             <el-col style="max-width: 768px">
                 <router-view></router-view>
