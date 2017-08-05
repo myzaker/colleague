@@ -1,6 +1,7 @@
 @import "overwrite";
 
 @font-color: #3b3b3b;
+@muted-color: #b8b8b8;
 
 body {
     font-family: "Microsoft YaHei";
@@ -14,8 +15,14 @@ img {
 }
 
 .card-list {
-    text-decoration: none;
     color: @font-color;
+    text-decoration: none;
+    outline: none;
+
+    i {
+        color: @muted-color;
+        font-size: 1.5em;
+    }
 
     .el-card {
         margin-bottom: 1em;
