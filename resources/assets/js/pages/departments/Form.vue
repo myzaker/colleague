@@ -15,13 +15,15 @@
         </el-form>
 
         <div slot="footer">
-            <el-button @click="handleSubmit">确 定</el-button>
+            <el-button @click="handleSubmit">确定</el-button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['data'],
+
         data () {
             return {
                 form: {
@@ -31,9 +33,20 @@
             };
         },
 
+        mounted () {
+            if (this.data) {
+                this.form.name        = this.data.name;
+                this.form.description = this.data.description;
+            }
+        },
+
         methods: {
             handleSubmit () {
-                axios.post(laroute.route('departments.store'), this.form).then((response) => {
+                let promise = this.data
+                    ? axios.put(laroute.route('departments.update', {department: this.data.id}), this.form)
+                    : axios.post(laroute.route('departments.store'), this.form);
+
+                promise.then((response) => {
                     this.$emit('success');
                     this.$emit('close');
                 });

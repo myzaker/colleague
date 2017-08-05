@@ -70,11 +70,11 @@ class DepartmentController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int                      $id
-     * @return \Illuminate\Http\Response
+     * @return bool
      */
     public function update(Request $request, $id)
     {
-        //
+        Department::find($id)->update($request->all());
     }
 
     /**

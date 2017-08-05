@@ -17,23 +17,23 @@
             </el-card>
         </a>
 
-        <el-dialog title="添加部门" :visible.sync="dialogFormVisible">
+        <el-dialog title="添加部门"
+                   :visible.sync="dialogFormVisible">
             <my-form @success="loadDepartments"
-                     @close="dialogFormVisible=false"/>
+                     @close="dialogFormVisible = false"/>
         </el-dialog>
     </div>
 </template>
 
 <script>
-    import MyForm from './Form.vue';
+    import Form from './mixins/form';
 
     export default {
-        components: {MyForm},
+        mixins: [Form],
 
         data () {
             return {
                 department: [],
-                dialogFormVisible: false,
             };
         },
 

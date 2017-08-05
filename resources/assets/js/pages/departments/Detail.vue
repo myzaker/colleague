@@ -5,7 +5,13 @@
                 {{department.name}}
             </h1>
 
-            {{department.description}}
+            <p>{{department.description}}</p>
+
+            <el-button type="text"
+                       href="javascript:void(0)"
+                       @click="dialogFormVisible = true">
+                修改部门信息
+            </el-button>
         </div>
 
         <router-link class="card-list"
@@ -17,11 +23,24 @@
                 {{staff.name}}
             </el-card>
         </router-link>
+
+        <el-dialog title="修改部门信息"
+                   :visible.sync="dialogFormVisible">
+            <my-form
+                    :data="department"
+                    @success="loadData"
+                    @close="dialogFormVisible = false">
+            </my-form>
+        </el-dialog>
     </div>
 </template>
 
 <script>
+    import Form from './mixins/form';
+
     export default {
+        mixins: [Form],
+
         data () {
             return {
                 department: {},
@@ -30,12 +49,18 @@
         },
 
         mounted () {
-            const url = laroute.route('departments.show', {department: this.$route.params.id});
+            this.loadData();
+        },
 
-            axios.get(url).then((response) => {
-                this.department = response.data.department;
-                this.staff      = response.data.staff;
-            });
+        methods: {
+            loadData () {
+                const url = laroute.route('departments.show', {department: this.$route.params.id});
+
+                axios.get(url).then((response) => {
+                    this.department = response.data.department;
+                    this.staff      = response.data.staff;
+                });
+            },
         },
     };
 </script>
