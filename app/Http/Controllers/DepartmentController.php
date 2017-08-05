@@ -46,8 +46,11 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
+        $department = Department::find($id);
+
         return [
-            'department' => Department::find($id),
+            'department' => $department,
+            'staff'      => $department->staff,
         ];
     }
 

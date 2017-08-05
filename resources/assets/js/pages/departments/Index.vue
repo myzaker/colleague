@@ -1,6 +1,7 @@
 <template>
     <div>
-        <router-link v-for="department in department"
+        <router-link class="card-list"
+                     v-for="department in department"
                      :key="department.id"
                      :to="'/departments/' + department.id">
             <el-card>
@@ -9,19 +10,6 @@
         </router-link>
     </div>
 </template>
-
-<style>
-    a {
-        text-decoration: none;
-        color: #3b3b3b;
-    }
-
-    .el-card {
-        margin-bottom: 1em;
-        font-size: 1.5em;
-        text-align: center;
-    }
-</style>
 
 <script>
     export default {

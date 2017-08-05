@@ -18,3 +18,11 @@ $factory->define(App\Department::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph,
     ];
 });
+
+$factory->define(App\Staff::class, function (Faker\Generator $faker) {
+    return [
+        'department_id' => $faker->numberBetween(1, 10),
+        'name'          => $faker->name,
+        'title'         => $faker->title,
+    ];
+});

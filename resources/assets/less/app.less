@@ -1,12 +1,25 @@
+@font-color: #3b3b3b;
+
 body {
     font-family: "Microsoft YaHei";
     font-size: 16px;
-    color: #3b3b3b !important;
+    color: @font-color !important;
 }
 
 img {
     max-width: 100%;
     height: auto;
+}
+
+.card-list {
+    text-decoration: none;
+    color: @font-color;
+
+    .el-card {
+        margin-bottom: 1em;
+        font-size: 1.5em;
+        text-align: center;
+    }
 }
 
 #brand {
