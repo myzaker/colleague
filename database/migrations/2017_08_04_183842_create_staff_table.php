@@ -18,6 +18,7 @@ class CreateStaffTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->string('name');
             $table->string('title');
+            $table->string('duty')->nullable();
             $table->timestamps();
         });
     }

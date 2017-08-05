@@ -12,5 +12,9 @@ export default new VueRouter({
             path: '/departments/:id',
             component: require('./pages/departments/Detail.vue'),
         },
+        {
+            path: '/staff/:id',
+            component: require('./pages/staff/Detail.vue'),
+        },
     ],
 });

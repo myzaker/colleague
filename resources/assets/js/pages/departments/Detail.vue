@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="department">
+        <div id="detail-box">
             <h1 slot="header">
                 {{department.name}}
             </h1>
@@ -11,7 +11,7 @@
         <router-link class="card-list"
                      v-for="staff in staff"
                      :key="staff.id"
-                     :to="'/staffs/' + staff.id">
+                     :to="'/staff/' + staff.id">
             <el-card>
                 <small>{{staff.title}}</small>
                 {{staff.name}}
@@ -19,18 +19,6 @@
         </router-link>
     </div>
 </template>
-
-<style>
-    h1 {
-        margin: 0;
-        font-weight: normal;
-    }
-
-    #department {
-        margin-bottom: 2em;
-        text-align: center;
-    }
-</style>
 
 <script>
     export default {

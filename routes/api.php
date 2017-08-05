@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,4 +11,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('departments','DepartmentController');
+Route::resource('departments', 'DepartmentController');
+Route::resource('staff', 'StaffController');

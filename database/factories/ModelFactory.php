@@ -24,5 +24,6 @@ $factory->define(App\Staff::class, function (Faker\Generator $faker) {
         'department_id' => $faker->numberBetween(1, 10),
         'name'          => $faker->name,
         'title'         => $faker->title,
+        'duty'          => $faker->sentence,
     ];
 });
