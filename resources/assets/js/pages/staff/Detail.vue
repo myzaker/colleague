@@ -7,7 +7,10 @@
             {{staff.name}}
         </h1>
 
-        {{staff.duty}}
+        <p>{{staff.duty}}</p>
+
+        <el-button type="text" :href="'mailto:' + staff.email">{{staff.email}}</el-button>
+        <el-button type="text" :href="'tel:' + staff.phone">{{staff.phone}}</el-button>
     </div>
 </template>
 
