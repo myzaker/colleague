@@ -35,6 +35,8 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create-resource');
+
         Staff::create($request->all());
     }
 
@@ -74,6 +76,8 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update-resource');
+
         Staff::find($id)->update($request->all());
     }
 

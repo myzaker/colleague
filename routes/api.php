@@ -11,5 +11,6 @@
 |
 */
 
+Route::get('permission/is-admin', 'PermissionController@isAdmin')->name('permission.admin');
 Route::resource('departments', 'DepartmentController');
 Route::resource('staff', 'StaffController');

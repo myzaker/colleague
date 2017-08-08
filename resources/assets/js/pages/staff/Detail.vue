@@ -14,7 +14,11 @@
             <el-button type="text" :href="'tel:' + staff.phone">{{staff.phone}}</el-button>
         </P>
 
-        <el-button @click="dialogFormVisible = true">修改人员信息</el-button>
+        <el-button
+                @click="dialogFormVisible = true"
+                v-if="admin">
+            修改人员信息
+        </el-button>
 
         <el-dialog title="修改人员信息"
                    :visible.sync="dialogFormVisible">
@@ -29,8 +33,10 @@
 
 <script>
     import MyForm from './Form.vue';
+    import Administration from '../../mixins/administration';
 
     export default {
+        mixins: [Administration],
         components: {MyForm},
 
         data () {

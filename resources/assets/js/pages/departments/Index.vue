@@ -9,7 +9,10 @@
             </el-card>
         </router-link>
 
-        <add-card-button @click.native="dialogFormVisible = true"/>
+        <add-card-button
+                @click.native="dialogFormVisible = true"
+                v-if="admin">
+        </add-card-button>
 
         <el-dialog title="添加部门"
                    :visible.sync="dialogFormVisible">
@@ -21,9 +24,10 @@
 
 <script>
     import Form from './mixins/form';
+    import Administration from '../../mixins/administration';
 
     export default {
-        mixins: [Form],
+        mixins: [Form, Administration],
 
         data () {
             return {

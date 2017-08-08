@@ -35,6 +35,8 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create-resource');
+
         return Department::create($request->all());
     }
 
@@ -74,6 +76,8 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update-resource');
+
         Department::find($id)->update($request->all());
     }
 

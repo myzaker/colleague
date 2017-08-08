@@ -9,7 +9,8 @@
 
             <el-button type="text"
                        href="javascript:void(0)"
-                       @click="dialogFormVisible = true">
+                       @click="dialogFormVisible = true"
+                       v-if="admin">
                 修改部门信息
             </el-button>
         </div>
@@ -24,7 +25,10 @@
             </el-card>
         </router-link>
 
-        <add-card-button @click.native="staffFormVisible = true"/>
+        <add-card-button
+                @click.native="staffFormVisible = true"
+                v-if="admin">
+        </add-card-button>
 
         <el-dialog title="修改部门信息"
                    :visible.sync="dialogFormVisible">
@@ -48,10 +52,11 @@
 
 <script>
     import Form from './mixins/form';
+    import Administration from '../../mixins/administration';
     import StaffForm from '../staff/Form.vue';
 
     export default {
-        mixins: [Form],
+        mixins: [Form, Administration],
 
         components: {StaffForm},
 
