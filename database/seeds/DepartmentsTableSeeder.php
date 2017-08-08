@@ -12,5 +12,9 @@ class DepartmentsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Department::class, 10)->create();
+
+        DB::table('departments')->where('id', 1)->update([
+            'name' => '技术一部',
+        ]);
     }
 }
