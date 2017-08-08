@@ -76,9 +76,9 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('update-resource');
+        $this->authorize('update-staff', $staff = Staff::find($id));
 
-        Staff::find($id)->update($request->all());
+        $staff->update($request->all());
     }
 
     /**

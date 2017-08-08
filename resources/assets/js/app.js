@@ -16,7 +16,7 @@ require('./bootstrap');
 
 Vue.component('add-card-button', require('./components/AddCardButton.vue'));
 
-const app = new Vue({
+new Vue({
     el: '#app',
     router,
 });

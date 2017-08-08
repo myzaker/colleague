@@ -12,7 +12,7 @@ export default {
 
     methods: {
         isAdmin () {
-            axios.get(laroute.route('permission.admin')).then((response) => {
+            axios.get(laroute.route('auth.admin')).then((response) => {
                 this.admin = response.data.is_admin;
             });
         },
