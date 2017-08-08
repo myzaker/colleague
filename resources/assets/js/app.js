@@ -1,3 +1,4 @@
+import store from './store';
 import router from './router';
 
 /**
@@ -18,5 +19,12 @@ Vue.component('add-card-button', require('./components/AddCardButton.vue'));
 
 new Vue({
     el: '#app',
-    router,
+
+    store, router,
+
+    created () {
+        axios.get(laroute.route('auth.user')).then((response) => {
+            this.$store.commit('setAuth', response.data);
+        });
+    },
 });

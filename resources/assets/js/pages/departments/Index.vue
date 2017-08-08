@@ -11,7 +11,7 @@
 
         <add-card-button
                 @click.native="dialogFormVisible = true"
-                v-if="admin">
+                v-if="auth.is_admin">
         </add-card-button>
 
         <el-dialog title="添加部门"

@@ -30,10 +30,12 @@
     <!-- Scripts -->
     @if('production'==config('app.env'))
         <script src="//cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
+        <script src="//cdn.bootcss.com/vuex/2.3.1/vuex.min.js"></script>
         <script src="//cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
         <script src="//cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
     @else
         <script src="//cdn.bootcss.com/vue/2.3.4/vue.js"></script>
+        <script src="//cdn.bootcss.com/vuex/2.3.1/vuex.js"></script>
         <script src="//cdn.bootcss.com/vue-router/2.7.0/vue-router.js"></script>
         <script src="//cdn.bootcss.com/axios/0.16.2/axios.js"></script>
     @endif

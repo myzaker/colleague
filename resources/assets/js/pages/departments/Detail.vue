@@ -10,7 +10,7 @@
             <el-button type="text"
                        href="javascript:void(0)"
                        @click="dialogFormVisible = true"
-                       v-if="admin">
+                       v-if="auth.is_admin">
                 修改部门信息
             </el-button>
         </div>
@@ -27,7 +27,7 @@
 
         <add-card-button
                 @click.native="staffFormVisible = true"
-                v-if="admin">
+                v-if="auth.is_admin">
         </add-card-button>
 
         <el-dialog title="修改部门信息"

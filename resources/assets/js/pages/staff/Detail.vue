@@ -16,7 +16,7 @@
 
         <el-button
                 @click="dialogFormVisible = true"
-                v-if="admin || auth.id==staff.id">
+                v-if="auth.is_admin || auth.id==staff.id">
             修改人员信息
         </el-button>
 
@@ -41,7 +41,6 @@
 
         data () {
             return {
-                auth: {},
                 department: {},
                 staff: {},
                 dialogFormVisible: false,
@@ -50,10 +49,6 @@
 
         mounted () {
             this.loadData();
-
-            axios.get(laroute.route('auth.user')).then((response) => {
-                this.auth = response.data.user;
-            });
         },
 
         methods: {
