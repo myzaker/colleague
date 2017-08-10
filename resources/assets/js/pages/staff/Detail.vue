@@ -51,6 +51,12 @@
             this.loadData();
         },
 
+        watch: {
+            '$route' (to) {
+                this.loadData();
+            },
+        },
+
         methods: {
             loadData () {
                 const url = laroute.route('staff.show', {staff: this.$route.params.id});

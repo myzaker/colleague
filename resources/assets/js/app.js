@@ -15,6 +15,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('search', require('./components/Search.vue'));
 Vue.component('add-card-button', require('./components/AddCardButton.vue'));
 
 new Vue({

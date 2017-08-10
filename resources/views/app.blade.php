@@ -11,7 +11,7 @@
         <title>{{ config('app.name') }}</title>
 
         <!-- Styles -->
-        <link href="//cdn.bootcss.com/element-ui/1.3.7/theme-default/index.css" rel="stylesheet">
+        <link href="//cdn.bootcss.com/element-ui/1.4.2/theme-default/index.css" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
@@ -22,6 +22,8 @@
 
         <el-row type="flex" justify="center">
             <el-col style="max-width: 768px">
+                <search></search>
+
                 <router-view></router-view>
             </el-col>
         </el-row>
@@ -40,7 +42,7 @@
         <script src="//cdn.bootcss.com/axios/0.16.2/axios.js"></script>
     @endif
 
-    <script src="//cdn.bootcss.com/element-ui/1.3.7/index.js"></script>
+    <script src="//cdn.bootcss.com/element-ui/1.4.2/index.js"></script>
     <script src="{{ asset('js/laroute.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     </body>
