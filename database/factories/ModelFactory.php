@@ -15,10 +15,19 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
+    $titles = collect([
+        '工程师',
+        '设计师',
+        '行政专员',
+        '人事专员',
+        '运营专员',
+        '产品专员',
+    ]);
+
     return [
         'department_id'  => $faker->numberBetween(1, 10),
         'name'           => $faker->name,
-        'title'          => $faker->title,
+        'title'          => $titles->random(),
         'email'          => $faker->unique()->safeEmail,
         'phone'          => $faker->phoneNumber,
         'duty'           => $faker->sentence,

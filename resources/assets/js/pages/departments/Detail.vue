@@ -20,7 +20,10 @@
                      :key="staff.id"
                      :to="'/staff/' + staff.id">
             <el-card>
-                <small>{{staff.title}}</small>
+                <small class="muted-text">
+                    {{staff.title}}
+                </small>
+                <br>
                 {{staff.name}}
             </el-card>
         </router-link>

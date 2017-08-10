@@ -1,12 +1,12 @@
 @import "overwrite";
 
-@font-color: #3b3b3b;
-@muted-color: #b8b8b8;
+@primary-color: rgba(0, 0, 0, 87%);
+@secondary-color: rgba(0, 0, 0, 54%);
 
 body {
     font-family: "Microsoft YaHei";
     font-size: 16px;
-    color: @font-color !important;
+    color: @primary-color !important;
 }
 
 img {
@@ -14,13 +14,17 @@ img {
     height: auto;
 }
 
+.muted-text {
+    color: @secondary-color;
+}
+
 .card-list {
-    color: @font-color;
+    color: @primary-color;
     text-decoration: none;
     outline: none;
 
     i {
-        color: @muted-color;
+        color: @secondary-color;
         font-size: 1.5em;
     }
 

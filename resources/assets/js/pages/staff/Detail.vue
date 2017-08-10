@@ -3,7 +3,10 @@
         {{department.name}}
 
         <h1>
-            <small>{{staff.title}}</small>
+            <small class="muted-text">
+                {{staff.title}}
+            </small>
+            <br>
             {{staff.name}}
         </h1>
 

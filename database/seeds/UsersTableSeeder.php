@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->where('id', 1)->update([
             'department_id' => 1,
             'name'          => '张学征',
+            'title'         => 'PHP工程师',
             'email'         => 'zhangxuezheng@myzaker.com',
             'password'      => bcrypt('123456'),
             'is_admin'      => true,
