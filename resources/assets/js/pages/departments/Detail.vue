@@ -5,7 +5,12 @@
                 {{department.name}}
             </h1>
 
-            <p>{{department.description}}</p>
+            <group-tags
+                    :department="department"
+                    :groups="department.groups">
+            </group-tags>
+
+            <p class="muted-text">{{department.description}}</p>
 
             <el-button type="text"
                        href="javascript:void(0)"
@@ -26,6 +31,10 @@
                     <div id="profile">
                         <small class="muted-text">
                             {{staff.title}}
+
+                            <template v-if="staff.group_name">
+                                （{{staff.group_name}}）
+                            </template>
                         </small>
                         <br>
                         {{staff.name}}
@@ -82,12 +91,14 @@
 <script>
     import Form from './mixins/form';
     import Administration from '../../mixins/administration';
+
+    import GroupTags from './GroupTags.vue';
     import StaffForm from '../staff/Form.vue';
 
     export default {
         mixins: [Form, Administration],
 
-        components: {StaffForm},
+        components: {GroupTags, StaffForm},
 
         data () {
             return {

@@ -3,13 +3,24 @@
         <el-form :model="form">
             <el-form-item label="部门"
                           v-if="!department">
-                <br>
-                <el-select v-model="form.department_id">
+                <el-select v-model="form.department_id"
+                           @change="loadGroups">
                     <el-option
                             v-for="department in departments"
                             :label="department.name"
                             :key="department.id"
                             :value="department.id">
+                    </el-option>
+                </el-select>
+            </el-form-item>
+
+            <el-form-item label="分组">
+                <el-select v-model="form.group_id">
+                    <el-option
+                            v-for="group in groups"
+                            :label="group.name"
+                            :key="group.id"
+                            :value="group.id">
                     </el-option>
                 </el-select>
             </el-form-item>
@@ -57,8 +68,10 @@
         data () {
             return {
                 departments: [],
+                groups: [],
                 form: {
                     department_id: null,
+                    group_id: null,
                     name: '',
                     title: '',
                     email: '',
@@ -69,18 +82,17 @@
         },
 
         mounted () {
-            if (this.department)
+            if (this.department) {
                 this.form.department_id = this.department;
+
+                this.loadGroups();
+            }
             else
                 this.loadDepartments();
 
             if (this.data) {
-                this.form.department_id = this.data.department_id;
-                this.form.name          = this.data.name;
-                this.form.title         = this.data.title;
-                this.form.email         = this.data.email;
-                this.form.phone         = this.data.phone;
-                this.form.duty          = this.data.duty;
+                // Deep clone
+                this.form = JSON.parse(JSON.stringify(this.data));
             }
         },
 
@@ -88,6 +100,16 @@
             loadDepartments () {
                 axios.get(laroute.route('departments.index')).then((response) => {
                     this.departments = response.data;
+                });
+            },
+
+            loadGroups () {
+                const url = laroute.route('departments.groups.index', {
+                    department: this.form.department_id,
+                });
+
+                axios.get(url).then((response) => {
+                    this.groups = response.data;
                 });
             },
 

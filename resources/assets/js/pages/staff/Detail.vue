@@ -8,7 +8,13 @@
 
                 <p>
                     <span class="muted-text">
-                    {{department.name}} | {{staff.title}}
+                        {{department.name}}
+                        |
+                        <template v-if="staff.group_name">
+                            {{staff.group_name}}
+                            |
+                        </template>
+                        {{staff.title}}
                     </span>
 
                     <br>

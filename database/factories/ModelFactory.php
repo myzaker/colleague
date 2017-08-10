@@ -42,3 +42,10 @@ $factory->define(App\Department::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph,
     ];
 });
+
+$factory->define(App\Group::class, function (Faker\Generator $faker) {
+    return [
+        'department_id' => $faker->numberBetween(1, 10),
+        'name'          => $faker->company,
+    ];
+});

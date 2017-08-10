@@ -20,6 +20,7 @@ class Staff extends Model
      */
     protected $fillable = [
         'department_id',
+        'group_id',
         'name',
         'title',
         'email',
@@ -27,8 +28,20 @@ class Staff extends Model
         'duty',
     ];
 
+    protected $appends = ['group_name'];
+
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
+    public function getGroupNameAttribute()
+    {
+        return $this->group ? $this->group->name : null;
     }
 }

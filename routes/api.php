@@ -13,6 +13,7 @@
 
 Route::get('auth/user', 'AuthController@user')->name('auth.user');
 
+Route::resource('departments.groups', 'DepartmentGroupController');
 Route::resource('departments', 'DepartmentController');
 
 Route::get('staff/search', 'StaffController@search')->name('staff.search');
