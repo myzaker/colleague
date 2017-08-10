@@ -6,20 +6,22 @@
             {{group.name}}
         </el-tag>
 
-        <el-input
-                ref="newTagInput"
-                size="mini"
-                v-if="inputVisible"
-                v-model="newTagName"
-                @keyup.enter.native="handleInputConfirm"
-                @blur="handleInputConfirm">
-        </el-input>
+        <template v-if="auth.is_admin">
+            <el-input
+                    ref="newTagInput"
+                    size="mini"
+                    v-if="inputVisible"
+                    v-model="newTagName"
+                    @keyup.enter.native="handleInputConfirm"
+                    @blur="handleInputConfirm">
+            </el-input>
 
-        <el-button v-else
-                   size="small"
-                   @click="showInput">
-            添加分组
-        </el-button>
+            <el-button v-else
+                       size="small"
+                       @click="showInput">
+                添加分组
+            </el-button>
+        </template>
     </div>
 </template>
 
@@ -36,7 +38,11 @@
 </style>
 
 <script>
+    import Administration from '../../mixins/administration';
+
     export default {
+        mixins: [Administration],
+
         props: ['department', 'groups'],
 
         data () {

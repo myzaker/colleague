@@ -36,6 +36,8 @@ class DepartmentGroupController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create-resource');
+
         return Group::create($request->all());
     }
 
