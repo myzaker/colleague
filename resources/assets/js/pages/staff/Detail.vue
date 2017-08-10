@@ -1,23 +1,29 @@
 <template>
     <div id="detail-box">
-        {{department.name}}
+        <el-card>
+            <img class="card-avatar" :src="`https://github.com/identicons/${staff.id}.png`">
 
-        <h1>
-            <small class="muted-text">
-                {{staff.title}}
-            </small>
-            <br>
-            {{staff.name}}
-        </h1>
+            <div id="profile">
+                <h1>{{staff.name}}</h1>
 
-        <p>{{staff.duty}}</p>
+                <p>
+                    <span class="muted-text">
+                    {{department.name}} | {{staff.title}}
+                    </span>
 
-        <P>
-            <el-button type="text" :href="'mailto:' + staff.email">{{staff.email}}</el-button>
-            <el-button type="text" :href="'tel:' + staff.phone">{{staff.phone}}</el-button>
-        </P>
+                    <br>
+                    {{staff.duty}}
+                </p>
+
+                <P>
+                    <el-button type="text" :href="'mailto:' + staff.email">{{staff.email}}</el-button>
+                    <el-button type="text" :href="'tel:' + staff.phone">{{staff.phone}}</el-button>
+                </P>
+            </div>
+        </el-card>
 
         <el-button
+                id="modify"
                 @click="dialogFormVisible = true"
                 v-if="auth.is_admin || auth.id==staff.id">
             修改人员信息
@@ -33,6 +39,33 @@
         </el-dialog>
     </div>
 </template>
+
+<style lang="less" scoped>
+    .el-card {
+        padding-bottom: 1em;
+    }
+
+    .card-avatar {
+        width: 150px;
+    }
+
+    #profile {
+        float: left;
+
+        p:first-of-type {
+            margin-top: 0;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    #modify {
+        display: block;
+        margin: 1em auto;
+    }
+</style>
 
 <script>
     import MyForm from './Form.vue';

@@ -1,3 +1,4 @@
+@import "utilities";
 @import "overwrite";
 
 @primary-color: rgba(0, 0, 0, 87%);
@@ -14,11 +15,7 @@ img {
     height: auto;
 }
 
-.muted-text {
-    color: @secondary-color;
-}
-
-.card-list {
+.card-list-item {
     color: @primary-color;
     text-decoration: none;
     outline: none;
@@ -29,10 +26,14 @@ img {
     }
 
     .el-card {
-        margin-bottom: 1em;
         font-size: 1.5em;
-        text-align: center;
+        margin-bottom: 1em;
     }
+}
+
+.card-avatar {
+    float: left;
+    margin-right: 1.5em;
 }
 
 #brand {
@@ -46,7 +47,6 @@ img {
 
 #detail-box {
     margin-bottom: 2em;
-    text-align: center;
 
     h1 {
         margin: 0;

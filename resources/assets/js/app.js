@@ -16,7 +16,7 @@ require('./bootstrap');
  */
 
 Vue.component('search', require('./components/Search.vue'));
-Vue.component('add-card-button', require('./components/AddCardButton.vue'));
+Vue.component('add-button-card', require('./components/AddButtonCard.vue'));
 
 new Vue({
     el: '#app',

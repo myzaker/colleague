@@ -1,6 +1,7 @@
 <template>
     <el-autocomplete
             placeholder="找人"
+            v-model="query"
             :fetch-suggestions="querySearchAsync"
             @select="handleSelect"
     ></el-autocomplete>
@@ -23,6 +24,12 @@
 
 <script>
     export default {
+        data () {
+            return {
+                query: '',
+            };
+        },
+
         methods: {
             querySearchAsync (queryString, callback) {
                 axios.get(laroute.route('staff.search'), {params: {query: queryString}}).then((response) => {
@@ -40,6 +47,8 @@
             },
 
             handleSelect (item) {
+                this.query = '';
+
                 this.$router.push('/staff/' + item.address);
             },
         },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="detail-box">
+        <div id="detail-box" style="text-align: center">
             <h1 slot="header">
                 {{department.name}}
             </h1>
@@ -15,23 +15,29 @@
             </el-button>
         </div>
 
-        <router-link class="card-list"
+        <router-link class="card-list-item"
                      v-for="staff in staff"
                      :key="staff.id"
                      :to="'/staff/' + staff.id">
             <el-card>
-                <small class="muted-text">
-                    {{staff.title}}
-                </small>
-                <br>
-                {{staff.name}}
+                <div class="wrapper">
+                    <img class="card-avatar" :src="`https://github.com/identicons/${staff.id}.png`">
+
+                    <div id="profile">
+                        <small class="muted-text">
+                            {{staff.title}}
+                        </small>
+                        <br>
+                        {{staff.name}}
+                    </div>
+                </div>
             </el-card>
         </router-link>
 
-        <add-card-button
+        <add-button-card
                 @click.native="staffFormVisible = true"
                 v-if="auth.is_admin">
-        </add-card-button>
+        </add-button-card>
 
         <el-dialog title="修改部门信息"
                    :visible.sync="dialogFormVisible">
@@ -52,6 +58,26 @@
         </el-dialog>
     </div>
 </template>
+
+<style lang="less" scoped>
+    .el-card:not(.add-button-card) .wrapper {
+        display: table;
+    }
+
+    .card-avatar {
+        width: 100px;
+    }
+
+    #profile {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100px;
+
+        p:first-of-type {
+            margin-top: 0;
+        }
+    }
+</style>
 
 <script>
     import Form from './mixins/form';

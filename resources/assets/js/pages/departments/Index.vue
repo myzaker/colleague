@@ -1,6 +1,7 @@
 <template>
     <div>
-        <router-link class="card-list"
+        <router-link class="card-list-item"
+                     style="text-align: center"
                      v-for="department in departments"
                      :key="department.id"
                      :to="'/departments/' + department.id">
@@ -9,10 +10,10 @@
             </el-card>
         </router-link>
 
-        <add-card-button
+        <add-button-card
                 @click.native="dialogFormVisible = true"
                 v-if="auth.is_admin">
-        </add-card-button>
+        </add-button-card>
 
         <el-dialog title="添加部门"
                    :visible.sync="dialogFormVisible">
