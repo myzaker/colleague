@@ -6,18 +6,18 @@
     ></el-autocomplete>
 </template>
 
-<style>
-    input {
-        text-align: center;
-    }
-
-    input::placeholder {
-        text-align: center;
-    }
-
+<style lang="less">
     .el-autocomplete {
         display: inherit;
-        margin-bottom: 2em;
+        margin-bottom: 1.5em;
+
+        input, input::placeholder {
+            text-align: center;
+        }
+    }
+
+    .el-autocomplete-suggestion__list {
+        text-align: center;
     }
 </style>
 
