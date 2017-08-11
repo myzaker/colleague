@@ -37,8 +37,13 @@
                                 （{{staff.group_name}}）
                             </template>
                         </small>
+
                         <br>
+
                         {{staff.name}}
+                        <small v-if="staff.position">
+                            {{staff.position}}
+                        </small>
                     </div>
                 </div>
             </el-card>
