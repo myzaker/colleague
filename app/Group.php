@@ -15,4 +15,9 @@ class Group extends Model
         'department_id',
         'name',
     ];
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class);
+    }
 }

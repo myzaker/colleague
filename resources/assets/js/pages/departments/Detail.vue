@@ -7,7 +7,8 @@
 
             <group-tags
                     :department="department"
-                    :groups="department.groups">
+                    :groups="department.groups"
+                    :current="currentGroup">
             </group-tags>
 
             <p class="muted-text">{{department.description}}</p>
@@ -105,8 +106,15 @@
             return {
                 department: {},
                 staff: [],
+                currentGroup: null,
                 staffFormVisible: false,
             };
+        },
+
+        watch: {
+            '$route' (to) {
+                this.loadData();
+            },
         },
 
         mounted () {
@@ -115,13 +123,20 @@
 
         methods: {
             loadData () {
-                const url = laroute.route('departments.show', {department: this.$route.params.id});
+                const department = this.$route.params.id;
+                const group      = this.$route.query.group;
+                const url        = !group
+                    ? laroute.route('departments.show', {department})
+                    : laroute.route('departments.groups.show', {department, group});
 
                 axios.get(url).then((response) => {
-                    this.department = response.data.department;
-                    this.staff      = response.data.staff;
+                    this.department   = response.data.department;
+                    this.staff        = response.data.staff;
+                    this.currentGroup = group ? group : null;
 
-                    this.logAccession('department', this.department.id, 'page');
+                    group
+                        ? this.logAccession('group', group, 'page')
+                        : this.logAccession('department', this.department.id, 'page');
                 });
             },
         },

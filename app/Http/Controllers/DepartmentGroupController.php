@@ -44,12 +44,20 @@ class DepartmentGroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int $departmentId
+     * @param      $groupId
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($departmentId, $groupId)
     {
-        //
+        /** @var Department $department */
+        $department = Department::findOrFail($departmentId);
+
+        /** @var Group $group */
+        $group = $department->groups()->findOrFail($groupId);
+        $staff = $group->staff;
+
+        return compact('department', 'group', 'staff');
     }
 
     /**

@@ -2,7 +2,9 @@
     <div id="group-tags">
         <el-tag
                 v-for="group in groups"
-                :key="group.id">
+                :key="group.id"
+                :type="current == group.id ? 'danger':null"
+                @click.native="switchGroup(group.id)">
             {{group.name}}
         </el-tag>
 
@@ -30,6 +32,7 @@
         cursor: pointer;
         margin-right: 10px;
         margin-bottom: 5px;
+        font-size: 14px;
     }
 
     #group-tags {
@@ -43,7 +46,7 @@
     export default {
         mixins: [Administration],
 
-        props: ['department', 'groups'],
+        props: ['department', 'groups', 'current'],
 
         data () {
             return {
@@ -51,6 +54,7 @@
                 newTagName: '',
             };
         },
+
         methods: {
             showInput () {
                 this.inputVisible = true;
@@ -78,6 +82,13 @@
 
                 this.inputVisible = false;
                 this.newTagName   = '';
+            },
+
+            switchGroup (id) {
+                this.$router.push({
+                    path: '/departments/' + this.department.id,
+                    query: {group: id},
+                });
             },
         },
     };
