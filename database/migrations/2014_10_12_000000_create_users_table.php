@@ -18,10 +18,13 @@ class CreateUsersTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->integer('group_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('title');
+            $table->enum('gender', ['male', 'female']);
+            $table->string('city')->default('');
+            $table->string('job');
+            $table->string('position')->default('');
             $table->string('email')->unique();
-            $table->string('duty')->nullable();
-            $table->string('password')->nullable();
+            $table->string('duty')->default('');
+            $table->string('password')->default('');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

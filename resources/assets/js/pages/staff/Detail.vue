@@ -4,17 +4,28 @@
             <img class="card-avatar" :src="`https://github.com/identicons/${staff.id}.png`">
 
             <div id="profile">
-                <h1>{{staff.name}}</h1>
+                <h1>
+                    {{staff.name}}
+                    <small class="muted-text"
+                           v-if="staff.position">
+                        {{staff.position}}
+                    </small>
+
+                    <small>
+                        <gender-symbol :gender="staff.gender"/>
+                    </small>
+                </h1>
 
                 <p>
                     <span class="muted-text">
+                        <small v-if="staff.city">来自{{staff.city}}</small><br>
                         {{department.name}}
                         |
                         <template v-if="staff.group_name">
                             {{staff.group_name}}
                             |
                         </template>
-                        {{staff.title}}
+                        {{staff.job}}
                     </span>
 
                     <br>

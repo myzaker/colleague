@@ -30,7 +30,7 @@
             </el-form-item>
 
             <el-form-item label="头衔">
-                <el-input v-model="form.title"></el-input>
+                <el-input v-model="form.job"></el-input>
             </el-form-item>
 
             <el-form-item label="邮箱">
@@ -69,7 +69,7 @@
                     department_id: null,
                     group_id: null,
                     name: '',
-                    title: '',
+                    job: '',
                     email: '',
                     duty: '',
                 },

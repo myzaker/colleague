@@ -31,7 +31,7 @@
 
                     <div id="profile">
                         <small class="muted-text">
-                            {{staff.title}}
+                            {{staff.job}}
 
                             <template v-if="staff.group_name">
                                 （{{staff.group_name}}）

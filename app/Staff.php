@@ -22,7 +22,10 @@ class Staff extends Model
         'department_id',
         'group_id',
         'name',
-        'title',
+        'gender',
+        'city',
+        'job',
+        'position',
         'email',
         'duty',
     ];
