@@ -37,10 +37,6 @@
                 <el-input v-model="form.email"></el-input>
             </el-form-item>
 
-            <el-form-item label="手机">
-                <el-input v-model="form.phone"></el-input>
-            </el-form-item>
-
             <el-form-item label="职责">
                 <el-input v-model="form.duty"></el-input>
             </el-form-item>
@@ -75,7 +71,6 @@
                     name: '',
                     title: '',
                     email: '',
-                    phone: '',
                     duty: '',
                 },
             };

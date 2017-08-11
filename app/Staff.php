@@ -24,7 +24,6 @@ class Staff extends Model
         'name',
         'title',
         'email',
-        'phone',
         'duty',
     ];
 

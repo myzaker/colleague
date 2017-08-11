@@ -23,7 +23,6 @@
 
                 <P>
                     <el-button type="text" :href="'mailto:' + staff.email">{{staff.email}}</el-button>
-                    <el-button type="text" :href="'tel:' + staff.phone">{{staff.phone}}</el-button>
                 </P>
             </div>
         </el-card>
