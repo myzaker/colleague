@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Staff;
+use App\AccessLog;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class AccessLogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,25 +35,18 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create-resource');
-
-        Staff::create($request->all());
+        AccessLog::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @return array
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $staff = Staff::findOrFail($id);
-
-        return [
-            'staff'      => $staff,
-            'department' => $staff->department,
-        ];
+        //
     }
 
     /**
@@ -76,9 +69,7 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('update-staff', $staff = Staff::find($id));
-
-        $staff->update($request->all());
+        //
     }
 
     /**
@@ -90,10 +81,5 @@ class StaffController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function search(Request $request)
-    {
-        return Staff::where('name', 'like', "%{$request->input('query')}%")->get();
     }
 }

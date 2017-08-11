@@ -76,9 +76,10 @@
 <script>
     import MyForm from './Form.vue';
     import Administration from '../../mixins/administration';
+    import AccessLog from '../../mixins/accessLog';
 
     export default {
-        mixins: [Administration],
+        mixins: [Administration, AccessLog],
         components: {MyForm},
 
         data () {
@@ -89,14 +90,14 @@
             };
         },
 
-        mounted () {
-            this.loadData();
-        },
-
         watch: {
             '$route' (to) {
                 this.loadData();
             },
+        },
+
+        mounted () {
+            this.loadData();
         },
 
         methods: {
@@ -106,6 +107,12 @@
                 axios.get(url).then((response) => {
                     this.department = response.data.department;
                     this.staff      = response.data.staff;
+
+                    this.logAccession(
+                        'staff',
+                        this.staff.id,
+                        this.$route.query.from ? 'search' : 'page',
+                    );
                 });
             },
         },

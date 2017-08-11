@@ -91,12 +91,13 @@
 <script>
     import Form from './mixins/form';
     import Administration from '../../mixins/administration';
+    import AccessLog from '../../mixins/accessLog';
 
     import GroupTags from './GroupTags.vue';
     import StaffForm from '../staff/Form.vue';
 
     export default {
-        mixins: [Form, Administration],
+        mixins: [Form, Administration, AccessLog],
 
         components: {GroupTags, StaffForm},
 
@@ -119,6 +120,8 @@
                 axios.get(url).then((response) => {
                     this.department = response.data.department;
                     this.staff      = response.data.staff;
+
+                    this.logAccession('department', this.department.id, 'page');
                 });
             },
         },

@@ -23,7 +23,11 @@
 </style>
 
 <script>
+    import AccessLog from '../mixins/accessLog';
+
     export default {
+        mixins: [AccessLog],
+
         data () {
             return {
                 query: '',
@@ -49,7 +53,7 @@
             handleSelect (item) {
                 this.query = '';
 
-                this.$router.push('/staff/' + item.address);
+                this.$router.push(`/staff/${item.address}?from=search`);
             },
         },
     };
