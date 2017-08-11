@@ -85,10 +85,12 @@
             },
 
             switchGroup (id) {
-                this.$router.push({
-                    path: '/departments/' + this.department.id,
-                    query: {group: id},
-                });
+                let to = {path: '/departments/' + this.department.id};
+
+                if (this.current !== id)
+                    to.query = {group: id};
+
+                this.$router.push(to);
             },
         },
     };
