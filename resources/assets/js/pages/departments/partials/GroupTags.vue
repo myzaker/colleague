@@ -9,18 +9,24 @@
         </el-tag>
 
         <template v-if="auth.is_admin">
-            <el-input
-                    ref="newTagInput"
-                    size="mini"
-                    v-if="inputVisible"
-                    v-model="newTagName"
-                    @keyup.enter.native="handleInputConfirm"
-                    @blur="handleInputConfirm">
-            </el-input>
+            <el-popover ref="popover"
+                        placement="bottom-end"
+                        v-model="showPopover"
+                        @show="onPopoverShowed">
+                <el-form>
+                    <el-form-item label="新分组名">
+                        <el-input
+                                ref="newTagInput"
+                                v-model="newTagName"
+                                @keyup.enter.native="handleInputConfirm"
+                                @keyup.esc.native="showPopover=false"
+                        ></el-input>
+                    </el-form-item>
+                </el-form>
+            </el-popover>
 
-            <el-button v-else
-                       size="small"
-                       @click="showInput">
+            <el-button size="small"
+                       v-popover:popover>
                 添加分组
             </el-button>
         </template>
@@ -51,18 +57,14 @@
 
         data () {
             return {
-                inputVisible: false,
+                showPopover: false,
                 newTagName: '',
             };
         },
 
         methods: {
-            showInput () {
-                this.inputVisible = true;
-
-                this.$nextTick(_ => {
-                    this.$refs.newTagInput.$refs.input.focus();
-                });
+            onPopoverShowed () {
+                this.$nextTick(_ => this.$refs.newTagInput.$refs.input.focus());
             },
 
             handleInputConfirm () {
@@ -77,8 +79,8 @@
                     }).then(group => this.groups.push(group));
                 }
 
-                this.inputVisible = false;
-                this.newTagName   = '';
+                this.showPopover = false;
+                this.newTagName  = '';
             },
 
             switchGroup (id) {
