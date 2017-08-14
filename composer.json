@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -40,7 +43,7 @@
         ],
         "post-install-cmd": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "App\\Console\\ComposerScripts::postInstall",
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan safely:ide-helper",
             "php artisan optimize"
         ],
