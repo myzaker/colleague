@@ -11,24 +11,27 @@
         </router-link>
 
         <add-button-card
-                @click.native="dialogFormVisible = true"
+                @click.native="departmentFormVisible = true"
                 v-if="auth.is_admin">
         </add-button-card>
 
         <el-dialog title="添加部门"
-                   :visible.sync="dialogFormVisible">
-            <my-form @success="loadDepartments"
-                     @close="dialogFormVisible = false"/>
+                   :visible.sync="departmentFormVisible">
+            <department-form
+                    @success="load"
+                    @close="departmentFormVisible = false">
+            </department-form>
         </el-dialog>
     </div>
 </template>
 
 <script>
-    import Form from './mixins/form';
     import Administration from '../../mixins/administration';
+    import Department from '../../mixins/department';
+    import Form from './mixins/form';
 
     export default {
-        mixins: [Form, Administration],
+        mixins: [Form, Administration, Department],
 
         data () {
             return {
@@ -37,14 +40,12 @@
         },
 
         mounted () {
-            this.loadDepartments();
+            this.load();
         },
 
         methods: {
-            loadDepartments () {
-                axios.get(laroute.route('departments.index')).then((response) => {
-                    this.departments = response.data;
-                });
+            load () {
+                this.loadDepartments().then(departments => this.departments = departments);
             },
         },
     };

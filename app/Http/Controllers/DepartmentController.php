@@ -49,11 +49,10 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
+        $groups     = $department->groups;
+        $staff      = $department->staff;
 
-        return [
-            'department' => $department,
-            'staff'      => $department->staff,
-        ];
+        return collect($department)->merge(compact('groups', 'staff'));
     }
 
     /**

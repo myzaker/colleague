@@ -1,148 +1,94 @@
 <template>
     <div>
-        <div id="detail-box" style="text-align: center">
-            <h1 slot="header">
-                {{department.name}}
-            </h1>
-
-            <group-tags
-                    :department="department"
-                    :groups="department.groups"
-                    :current="currentGroup">
-            </group-tags>
-
-            <p class="muted-text">{{department.description}}</p>
-
-            <el-button type="text"
-                       href="javascript:void(0)"
-                       @click="dialogFormVisible = true"
-                       v-if="auth.is_admin">
-                修改部门信息
-            </el-button>
-        </div>
+        <detail-box
+                :department="department"
+                :currentGroup="currentGroup"
+                @department-updated="load"
+        ></detail-box>
 
         <router-link class="card-list-item"
-                     v-for="staff in staff"
+                     v-for="staff in staffList"
                      :key="staff.id"
                      :to="'/staff/' + staff.id">
-            <el-card>
-                <div class="wrapper">
-                    <img class="card-avatar" :src="`https://github.com/identicons/${staff.id}.png`">
-
-                    <div id="profile">
-                        <small class="muted-text">
-                            {{staff.job}}
-
-                            <template v-if="staff.group_name">
-                                （{{staff.group_name}}）
-                            </template>
-                        </small>
-
-                        <br>
-
-                        {{staff.name}}
-                        <small v-if="staff.position">
-                            {{staff.position}}
-                        </small>
-                    </div>
-                </div>
-            </el-card>
+            <staff-card :staff="buildStaff(staff)"/>
         </router-link>
 
         <add-button-card
-                @click.native="staffFormVisible = true"
-                v-if="auth.is_admin">
-        </add-button-card>
-
-        <el-dialog title="修改部门信息"
-                   :visible.sync="dialogFormVisible">
-            <my-form
-                    :data="department"
-                    @success="loadData"
-                    @close="dialogFormVisible = false">
-            </my-form>
-        </el-dialog>
-
-        <el-dialog title="添加人员"
-                   :visible.sync="staffFormVisible">
-            <staff-form
-                    :department="department.id"
-                    @success="loadData"
-                    @close="staffFormVisible = false">
-            </staff-form>
-        </el-dialog>
+                v-if="auth.is_admin"
+                @click.native="$router.push('/staff/create?department='+department.id)"
+        ></add-button-card>
     </div>
 </template>
 
-<style lang="less" scoped>
-    .el-card:not(.add-button-card) .wrapper {
-        display: table;
-    }
-
-    .card-avatar {
-        width: 100px;
-    }
-
-    #profile {
-        display: table-cell;
-        vertical-align: middle;
-        height: 100px;
-
-        p:first-of-type {
-            margin-top: 0;
-        }
-    }
-</style>
 
 <script>
-    import Form from './mixins/form';
     import Administration from '../../mixins/administration';
+    import Department from '../../mixins/department';
     import AccessLog from '../../mixins/accessLog';
+    import Form from './mixins/form';
 
-    import GroupTags from './GroupTags.vue';
-    import StaffForm from '../staff/Form.vue';
+    import DetailBox from './partials/DetailBox.vue';
+    import StaffCard from './partials/StaffCard.vue';
 
     export default {
-        mixins: [Form, Administration, AccessLog],
+        mixins: [Administration, Department, AccessLog, Form],
 
-        components: {GroupTags, StaffForm},
+        components: {DetailBox, StaffCard},
 
         data () {
             return {
                 department: {},
-                staff: [],
                 currentGroup: null,
-                staffFormVisible: false,
             };
         },
 
         watch: {
             '$route' (to) {
-                this.loadData();
+                this.load();
+            },
+        },
+
+        computed: {
+            staffList () {
+                const department = this.department;
+
+                return this.currentGroup
+                    ? (department.group ? department.group.staff : [])
+                    : department.staff;
             },
         },
 
         mounted () {
-            this.loadData();
+            this.load();
         },
 
         methods: {
-            loadData () {
+            load () {
                 const department = this.$route.params.id;
                 const group      = this.$route.query.group;
-                const url        = !group
-                    ? laroute.route('departments.show', {department})
-                    : laroute.route('departments.groups.show', {department, group});
 
-                axios.get(url).then((response) => {
-                    this.department   = response.data.department;
-                    this.staff        = response.data.staff;
-                    this.currentGroup = group ? group : null;
+                this.currentGroup = group ? group : null;
+
+                (group
+                        ? this.getDepartmentGroup(department, group)
+                        : this.getDepartment(department)
+                ).then(department => {
+                    this.department = department;
 
                     group
                         ? this.logAccession('group', group, 'page')
                         : this.logAccession('department', this.department.id, 'page');
                 });
+            },
+
+            buildStaff (staff) {
+                let groupId = staff.group_id;
+
+                if (groupId) {
+                    staff.group = _.find(this.department.groups, {id: groupId});
+                }
+
+                return staff;
             },
         },
     };

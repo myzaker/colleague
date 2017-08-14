@@ -4,6 +4,8 @@ export default new VueRouter({
             path: '/',
             redirect: '/departments',
         },
+
+        // Department
         {
             path: '/departments',
             component: require('./pages/departments/Index.vue'),
@@ -11,6 +13,16 @@ export default new VueRouter({
         {
             path: '/departments/:id',
             component: require('./pages/departments/Detail.vue'),
+        },
+
+        // Staff
+        {
+            path: '/staff/create',
+            component: require('./pages/staff/Create.vue'),
+        },
+        {
+            path: '/staff/:id/edit',
+            component: require('./pages/staff/Edit.vue'),
         },
         {
             path: '/staff/:id',

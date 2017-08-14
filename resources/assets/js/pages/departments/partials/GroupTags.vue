@@ -27,24 +27,25 @@
     </div>
 </template>
 
-<style>
-    .el-tag {
-        cursor: pointer;
-        margin-right: 10px;
-        margin-bottom: 5px;
-        font-size: 14px;
-    }
-
+<style lang="less">
     #group-tags {
         margin-bottom: -5px;
+
+        .el-tag {
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
     }
 </style>
 
 <script>
-    import Administration from '../../mixins/administration';
+    import Administration from '../../../mixins/administration';
+    import Department from '../../../mixins/department';
 
     export default {
-        mixins: [Administration],
+        mixins: [Administration, Department],
 
         props: ['department', 'groups', 'current'],
 
@@ -69,15 +70,11 @@
 
                 if (name) {
                     const department = this.department.id;
-                    const url        = laroute.route('departments.groups.store', {department});
-                    const data       = {
+
+                    this.createDepartmentGroup(department, {
                         department_id: department,
                         name,
-                    };
-
-                    axios.post(url, data).then((response) => {
-                        this.groups.push(response.data);
-                    });
+                    }).then(group => this.groups.push(group));
                 }
 
                 this.inputVisible = false;

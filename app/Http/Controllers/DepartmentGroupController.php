@@ -52,12 +52,13 @@ class DepartmentGroupController extends Controller
     {
         /** @var Department $department */
         $department = Department::findOrFail($departmentId);
+        $groups     = $department->groups;
 
         /** @var Group $group */
         $group = $department->groups()->findOrFail($groupId);
-        $staff = $group->staff;
+        $group = collect($group)->merge(['staff' => $group->staff]);
 
-        return compact('department', 'group', 'staff');
+        return collect($department)->merge(compact('groups', 'group'));
     }
 
     /**

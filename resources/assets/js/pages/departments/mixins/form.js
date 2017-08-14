@@ -1,11 +1,11 @@
-import MyForm from '../Form.vue';
+import DepartmentForm from '../partials/Form.vue';
 
 export default {
-    components: {MyForm},
+    components: {DepartmentForm},
 
     data () {
         return {
-            dialogFormVisible: false,
+            departmentFormVisible: false,
         };
     },
 };

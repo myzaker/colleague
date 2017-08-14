@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Staff extends Model
+class Staff extends User
 {
     /**
      * The table associated with the model.
@@ -30,8 +28,6 @@ class Staff extends Model
         'duty',
     ];
 
-    protected $appends = ['group_name'];
-
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -40,10 +36,5 @@ class Staff extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
-    }
-
-    public function getGroupNameAttribute()
-    {
-        return $this->group ? $this->group->name : null;
     }
 }

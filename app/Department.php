@@ -16,8 +16,6 @@ class Department extends Model
         'description',
     ];
 
-    protected $appends = ['groups'];
-
     public function groups()
     {
         return $this->hasMany(Group::class);
@@ -26,10 +24,5 @@ class Department extends Model
     public function staff()
     {
         return $this->hasMany(Staff::class);
-    }
-
-    public function getGroupsAttribute()
-    {
-        return $this->groups()->get();
     }
 }

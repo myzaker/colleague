@@ -25,8 +25,6 @@ new Vue({
     store, router,
 
     created () {
-        axios.get(laroute.route('auth.user')).then((response) => {
-            this.$store.commit('setAuth', response.data);
-        });
+        axios.get(laroute.route('auth.user')).then(response => this.$store.commit('setAuth', response.data));
     },
 });

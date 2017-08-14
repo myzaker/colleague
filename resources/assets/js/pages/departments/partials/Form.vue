@@ -21,7 +21,11 @@
 </template>
 
 <script>
+    import Department from '../../../mixins/department';
+
     export default {
+        mixins: [Department],
+
         props: ['data'],
 
         data () {
@@ -42,11 +46,10 @@
 
         methods: {
             handleSubmit () {
-                let promise = this.data
-                    ? axios.put(laroute.route('departments.update', {department: this.data.id}), this.form)
-                    : axios.post(laroute.route('departments.store'), this.form);
-
-                promise.then((response) => {
+                (this.data
+                        ? this.updateDepartment(this.data.id, this.form)
+                        : this.createDepartment(this.form)
+                ).then(response => {
                     this.$emit('success');
                     this.$emit('close');
                 });

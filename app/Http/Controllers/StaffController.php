@@ -44,16 +44,16 @@ class StaffController extends Controller
      * Display the specified resource.
      *
      * @param  int $id
-     * @return array
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function show($id)
     {
-        $staff = Staff::findOrFail($id);
+        /** @var Staff $staff */
+        $staff      = Staff::findOrFail($id);
+        $department = $staff->department;
+        $group      = $staff->group;
 
-        return [
-            'staff'      => $staff,
-            'department' => $staff->department,
-        ];
+        return collect($staff)->merge(compact('department', 'group'));
     }
 
     /**
