@@ -1,12 +1,12 @@
 <template>
     <div>
         <router-link class="card-list-item"
-                     style="text-align: center"
                      v-for="department in departments"
                      :key="department.id"
                      :to="'/departments/' + department.id">
             <el-card>
                 {{department.name}}
+                <span class="stat muted-text">{{department.stat}}人</span>
             </el-card>
         </router-link>
 
@@ -24,6 +24,12 @@
         </el-dialog>
     </div>
 </template>
+
+<style scoped>
+    .stat {
+        float: right;
+    }
+</style>
 
 <script>
     import Administration from '../../mixins/administration';

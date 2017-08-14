@@ -14,7 +14,11 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return Department::all();
+        return Department::all()->map(function (Department $department) {
+            $department['stat'] = $department->staff()->count();
+
+            return $department;
+        });
     }
 
     /**
