@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('auth/user', 'AuthController@user')->name('auth.user');
+Route::get('auth/user', 'Api\AuthController@user')->name('auth.user');
 
-Route::resource('logs', 'AccessLogController');
+Route::resource('logs', 'Api\AccessLogController');
 
-Route::resource('departments.groups', 'DepartmentGroupController');
-Route::resource('departments', 'DepartmentController');
+Route::resource('departments.groups', 'Api\DepartmentGroupController');
+Route::resource('departments', 'Api\DepartmentController');
 
-Route::get('staff/search', 'StaffController@search')->name('staff.search');
-Route::resource('staff', 'StaffController');
+Route::get('staff/search', 'Api\StaffController@search')->name('staff.search');
+Route::resource('staff', 'Api\StaffController');

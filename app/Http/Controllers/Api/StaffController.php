@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\AccessLog;
+use App\Http\Controllers\Controller;
+use App\Staff;
 use Illuminate\Http\Request;
 
-class AccessLogController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,18 +36,25 @@ class AccessLogController extends Controller
      */
     public function store(Request $request)
     {
-        AccessLog::create($request->all());
+        $this->authorize('create-resource');
+
+        Staff::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function show($id)
     {
-        //
+        /** @var Staff $staff */
+        $staff      = Staff::findOrFail($id);
+        $department = $staff->department;
+        $group      = $staff->group;
+
+        return collect($staff)->merge(compact('department', 'group'));
     }
 
     /**
@@ -69,7 +77,9 @@ class AccessLogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->authorize('update-staff', $staff = Staff::find($id));
+
+        $staff->update($request->all());
     }
 
     /**
@@ -81,5 +91,10 @@ class AccessLogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        return Staff::where('name', 'like', "%{$request->input('query')}%")->get();
     }
 }

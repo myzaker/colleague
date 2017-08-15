@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Staff;
+use App\Department;
+use App\Group;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class DepartmentGroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($department)
     {
-        //
+        return Department::find($department)->groups;
     }
 
     /**
@@ -31,29 +33,33 @@ class StaffController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return Group|\Illuminate\Database\Eloquent\Model
      */
     public function store(Request $request)
     {
         $this->authorize('create-resource');
 
-        Staff::create($request->all());
+        return Group::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     * @param  int $departmentId
+     * @param      $groupId
+     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($departmentId, $groupId)
     {
-        /** @var Staff $staff */
-        $staff      = Staff::findOrFail($id);
-        $department = $staff->department;
-        $group      = $staff->group;
+        /** @var Department $department */
+        $department = Department::findOrFail($departmentId);
+        $groups     = $department->groups;
 
-        return collect($staff)->merge(compact('department', 'group'));
+        /** @var Group $group */
+        $group = $department->groups()->findOrFail($groupId);
+        $group = collect($group)->merge(['staff' => $group->staff]);
+
+        return collect($department)->merge(compact('groups', 'group'));
     }
 
     /**
@@ -76,9 +82,7 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('update-staff', $staff = Staff::find($id));
-
-        $staff->update($request->all());
+        //
     }
 
     /**
@@ -90,10 +94,5 @@ class StaffController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function search(Request $request)
-    {
-        return Staff::where('name', 'like', "%{$request->input('query')}%")->get();
     }
 }

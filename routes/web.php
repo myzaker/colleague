@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('{view}', function () {
-    return view('app');
-})->where('view', '(.*)');
+Route::get('identicons/{string}', 'FrontController@identicon')->name('identicon');
+Route::get('{view}', 'FrontController@spa')->where('view', '(.*)');

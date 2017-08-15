@@ -16,6 +16,7 @@ require('./bootstrap');
  */
 
 Vue.component('gender-symbol', require('./components/GenderSymbol.vue'));
+Vue.component('identicon', require('./components/Identicon.vue'));
 Vue.component('search', require('./components/Search.vue'));
 Vue.component('add-button-card', require('./components/AddButtonCard.vue'));
 

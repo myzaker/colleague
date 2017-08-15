@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Department;
-use App\Group;
+use App\AccessLog;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DepartmentGroupController extends Controller
+class AccessLogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($department)
+    public function index()
     {
-        return Department::find($department)->groups;
+        //
     }
 
     /**
@@ -32,33 +32,22 @@ class DepartmentGroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return Group|\Illuminate\Database\Eloquent\Model
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->authorize('create-resource');
-
-        return Group::create($request->all());
+        AccessLog::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $departmentId
-     * @param      $groupId
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($departmentId, $groupId)
+    public function show($id)
     {
-        /** @var Department $department */
-        $department = Department::findOrFail($departmentId);
-        $groups     = $department->groups;
-
-        /** @var Group $group */
-        $group = $department->groups()->findOrFail($groupId);
-        $group = collect($group)->merge(['staff' => $group->staff]);
-
-        return collect($department)->merge(compact('groups', 'group'));
+        //
     }
 
     /**

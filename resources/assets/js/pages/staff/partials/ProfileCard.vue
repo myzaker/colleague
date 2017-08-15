@@ -1,6 +1,6 @@
 <template>
     <el-card>
-        <img class="avatar" :src="`https://github.com/identicons/${staff.id}.png`">
+        <identicon class="avatar" :string="staff.email"/>
 
         <div id="profile">
             <h1>
