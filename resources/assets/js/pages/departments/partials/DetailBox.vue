@@ -1,20 +1,22 @@
 <template>
-    <div id="detail-box">
-        <h1>{{department.name}}</h1>
+    <div>
+        <div id="detail-box">
+            <h1>{{department.name}}</h1>
 
-        <group-tags
-                :department="department"
-                :groups="department.groups"
-                :current="currentGroup">
-        </group-tags>
+            <group-tags
+                    :department="department"
+                    :groups="department.groups"
+                    :current="currentGroup">
+            </group-tags>
 
-        <p class="muted-text">{{department.description}}</p>
+            <p class="muted-text">{{department.description}}</p>
 
-        <el-button type="text"
-                   v-if="auth.is_admin"
-                   @click="departmentFormVisible = true">
-            修改部门信息
-        </el-button>
+            <el-button type="text"
+                       v-if="auth.is_admin"
+                       @click="departmentFormVisible = true">
+                修改部门信息
+            </el-button>
+        </div>
 
         <el-dialog title="修改部门信息"
                    :visible.sync="departmentFormVisible">
@@ -27,9 +29,13 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
     #detail-box {
         text-align: center;
+
+        h1 {
+            margin-bottom: 10px;
+        }
     }
 </style>
 
