@@ -7,7 +7,7 @@ export default {
         },
 
         createStaff (profile) {
-            return axios.post(laroute.route('staff.store'), this.form);
+            return axios.post(laroute.route('staff.store'), profile);
         },
 
         updateStaff (id, profile) {
