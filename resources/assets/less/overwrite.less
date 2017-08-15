@@ -11,8 +11,10 @@
     color: @theme-color;
 }
 
-.el-button--primary, .el-button--primary:hover {
-    color: #fff;
-    background-color: @theme-color;
-    border-color: @theme-color;
+.el-button--primary {
+    &, &:hover, &:focus {
+        color: #fff;
+        background-color: @theme-color;
+        border-color: @theme-color;
+    }
 }

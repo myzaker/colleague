@@ -1,5 +1,6 @@
 <template>
     <staff-form
+            mode="create"
             :departments="departments"
             :currentDepartmentId="this.$route.query.department"
             @submit="handleSubmit">
