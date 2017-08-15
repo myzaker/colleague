@@ -40,6 +40,7 @@
         <script src="//cdn.bootcss.com/vuex/2.3.1/vuex.js"></script>
         <script src="//cdn.bootcss.com/vue-router/2.7.0/vue-router.js"></script>
         <script src="//cdn.bootcss.com/axios/0.16.2/axios.js"></script>
+        <script>window.basePath = '{{env('APP_SPA_BASE')}}';</script>
     @endif
 
     <script src="//cdn.bootcss.com/element-ui/1.4.2/index.js"></script>

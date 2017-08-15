@@ -1,4 +1,6 @@
 export default new VueRouter({
+    mode: 'history',
+    base: window.basePath ? window.basePath : '/',
     routes: [
         {
             path: '/',

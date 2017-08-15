@@ -12,4 +12,4 @@
 */
 
 Route::get('identicons/{string}', 'FrontController@identicon')->name('identicon');
-Route::get('{view}', 'FrontController@spa')->where('view', '(.*)');
+Route::get('{view}', 'FrontController@spa')->where('view', '[\/\w\.-]*');
