@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('update-staff', function (User $user, Staff $staff) {
-            return $user->id == $staff->id;
+            return $user->is_admin || $user->id == $staff->id;
         });
     }
 }

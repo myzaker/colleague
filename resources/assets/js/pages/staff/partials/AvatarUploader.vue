@@ -5,11 +5,9 @@
             :data="params"
             :show-file-list="false"
             :on-success="handleUploadSuccess">
-        <img v-if="imageUrl"
-             :src="imageUrl">
+        <img v-if="value" :src="value">
 
-        <i v-else
-           class="el-icon-plus"></i>
+        <i v-else class="el-icon-plus"></i>
     </el-upload>
 </template>
 
@@ -52,14 +50,11 @@
 
             return {
                 params: {Token: token},
-                imageUrl: '',
             };
         },
 
         methods: {
             handleUploadSuccess (res, file) {
-                this.imageUrl = URL.createObjectURL(file.raw);
-
                 this.$emit('input', res.s_url);
             },
         },
