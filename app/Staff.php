@@ -20,6 +20,7 @@ class Staff extends User
         'department_id',
         'group_id',
         'name',
+        'avatar',
         'gender',
         'city',
         'job',

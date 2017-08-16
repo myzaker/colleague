@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->integer('group_id')->unsigned()->nullable();
             $table->string('name');
+            $table->string('avatar')->nullable();
             $table->enum('gender', ['male', 'female'])->nullable();
             $table->string('city')->nullable();
             $table->string('job');

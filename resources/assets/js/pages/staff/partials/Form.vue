@@ -51,6 +51,10 @@
                 </el-collapse-item>
 
                 <el-collapse-item prop="job" title="个人信息" name="personal">
+                    <el-form-item prop="avatar" label="头像">
+                        <avatar-uploader v-model="form.avatar"/>
+                    </el-form-item>
+
                     <el-form-item prop="name" label="姓名">
                         <el-input v-model="form.name"></el-input>
                     </el-form-item>
@@ -100,8 +104,11 @@
 <script>
     import Department from '../../../mixins/department';
 
+    import AvatarUploader from './AvatarUploader.vue';
+
     export default {
         mixins: [Department],
+        components: {AvatarUploader},
 
         props: [
             'mode',
@@ -122,6 +129,7 @@
                     department_id: null,
                     group_id: null,
                     name: '',
+                    avatar: '',
                     gender: '',
                     city: '',
                     job: '',
