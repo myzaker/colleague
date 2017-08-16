@@ -37,6 +37,12 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-resource');
+        $this->validate($request, [
+            'department_id' => 'required',
+            'name'          => 'required',
+            'job'           => 'required',
+            'email'         => 'required|email',
+        ]);
 
         Staff::create($request->all());
     }
