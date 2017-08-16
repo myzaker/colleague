@@ -33,13 +33,21 @@
         methods: {
             search (queryString, callback) {
                 axios.get(laroute.route('search'), {params: {query: queryString}}).then(response => {
+                    const typeMap = {
+                        staff: '职员',
+                        group: '分组',
+                    };
+
                     let result = [];
 
-                    for (let item of response.data.staff) {
-                        result.push({
-                            address: item.id,
-                            value: '[职员] ' + item.name,
-                        });
+                    for (let type in typeMap) {
+                        if (response.data[type])
+                            for (let item of response.data[type]) {
+                                result.push({
+                                    address: item.id,
+                                    value: `[${typeMap[type]}] ${item.name}`,
+                                });
+                            }
                     }
 
                     callback(result);
