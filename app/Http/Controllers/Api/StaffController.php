@@ -92,9 +92,4 @@ class StaffController extends Controller
     {
         //
     }
-
-    public function search(Request $request)
-    {
-        return Staff::where('name', 'like', "%{$request->input('query')}%")->get();
-    }
 }

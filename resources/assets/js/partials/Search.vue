@@ -32,13 +32,13 @@
 
         methods: {
             search (queryString, callback) {
-                axios.get(laroute.route('staff.search'), {params: {query: queryString}}).then(response => {
+                axios.get(laroute.route('search'), {params: {query: queryString}}).then(response => {
                     let result = [];
 
-                    for (let item of response.data) {
+                    for (let item of response.data.staff) {
                         result.push({
                             address: item.id,
-                            value: item.name,
+                            value: '[职员] ' + item.name,
                         });
                     }
 
