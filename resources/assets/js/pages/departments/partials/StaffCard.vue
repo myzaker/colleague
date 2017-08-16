@@ -1,6 +1,10 @@
 <template>
     <el-card>
-        <identicon class="avatar" :string="staff.email"/>
+        <staff-avatar
+                class="avatar"
+                :avatar="staff.avatar"
+                :identicon="staff.email"
+        ></staff-avatar>
 
         <div class="profile">
             <small class="muted-text">
@@ -43,7 +47,10 @@
 </style>
 
 <script>
+    import StaffAvatar from '../../../partials/StaffAvatar.vue';
+
     export default {
+        components: {StaffAvatar},
         props: ['staff'],
     };
 </script>

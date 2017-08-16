@@ -66,7 +66,7 @@
 </style>
 
 <script>
-    import StaffAvatar from './StaffAvatar.vue';
+    import StaffAvatar from '../../../partials/StaffAvatar.vue';
 
     export default {
         components: {StaffAvatar},
