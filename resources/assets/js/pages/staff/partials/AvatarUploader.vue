@@ -12,19 +12,21 @@
 </template>
 
 <style lang="less">
+    @size: 100px;
+
     #uploader {
         i {
             font-size: 28px;
             color: #8c939d;
-            width: 178px;
-            height: 178px;
-            line-height: 178px;
+            width: @size;
+            height: @size;
+            line-height: @size;
             text-align: center;
         }
 
         img {
-            width: 178px;
-            height: 178px;
+            width: @size;
+            height: @size;
             display: block;
         }
 

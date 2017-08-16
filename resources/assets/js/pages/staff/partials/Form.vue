@@ -14,7 +14,8 @@
                 <el-collapse-item title="部门信息" name="work">
                     <el-form-item v-if="'edit'==mode"
                                   prop="department_id"
-                                  label="部门">
+                                  label="部门"
+                                  required>
                         <el-select v-model="form.department_id"
                                    @change="form.group_id = null,onDepartmentChanged()">
                             <el-option
