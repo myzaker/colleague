@@ -37,6 +37,11 @@ class StaffController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-resource');
+        $this->validate($request, [
+            'name'=>'required',
+            'job'=>'required',
+            'email'=>'required|email'
+        ]);
 
         Staff::create($request->all());
     }
@@ -50,9 +55,9 @@ class StaffController extends Controller
     public function show($id)
     {
         /** @var Staff $staff */
-        $staff      = Staff::findOrFail($id);
+        $staff = Staff::findOrFail($id);
         $department = $staff->department;
-        $group      = $staff->group;
+        $group = $staff->group;
 
         return collect($staff)->merge(compact('department', 'group'));
     }
@@ -72,7 +77,7 @@ class StaffController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
