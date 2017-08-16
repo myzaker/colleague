@@ -41,6 +41,9 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-resource');
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
 
         return Department::create($request->all());
     }
