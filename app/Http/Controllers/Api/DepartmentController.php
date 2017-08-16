@@ -41,6 +41,9 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-resource');
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
 
         return Department::create($request->all());
     }
@@ -54,8 +57,8 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
-        $groups     = $department->groups;
-        $staff      = $department->staff;
+        $groups = $department->groups;
+        $staff = $department->staff;
 
         return collect($department)->merge(compact('groups', 'staff'));
     }
@@ -75,7 +78,7 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
+     * @param  int $id
      * @return bool
      */
     public function update(Request $request, $id)
