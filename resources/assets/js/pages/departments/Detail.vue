@@ -9,7 +9,8 @@
         <router-link class="card-list-item"
                      v-for="staff in staffList"
                      :key="staff.id"
-                     :to="'/staff/' + staff.id">
+                     :to="'/staff/' + staff.id"
+                     v-accesslog="'staff.page.'+staff.id">
             <staff-card :staff="buildStaff(staff)"/>
         </router-link>
 
@@ -24,14 +25,13 @@
 <script>
     import Administration from '../../mixins/administration';
     import Department from '../../mixins/department';
-    import AccessLog from '../../mixins/accessLog';
     import Form from './mixins/form';
 
     import DetailBox from './partials/DetailBox.vue';
     import StaffCard from './partials/StaffCard.vue';
 
     export default {
-        mixins: [Administration, Department, AccessLog, Form],
+        mixins: [Administration, Department, Form],
 
         components: {DetailBox, StaffCard},
 
@@ -74,10 +74,6 @@
                         : this.getDepartment(department)
                 ).then(department => {
                     this.department = department;
-
-                    group
-                        ? this.logAccession('group', group, 'page')
-                        : this.logAccession('department', this.department.id, 'page');
                 });
             },
 

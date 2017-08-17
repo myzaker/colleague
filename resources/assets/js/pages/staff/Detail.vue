@@ -20,13 +20,12 @@
 
 <script>
     import Administration from '../../mixins/administration';
-    import AccessLog from '../../mixins/accessLog';
     import Staff from '../../mixins/staff';
 
     import ProfileCard from './partials/ProfileCard.vue';
 
     export default {
-        mixins: [Administration, AccessLog, Staff],
+        mixins: [Administration, Staff],
         components: {ProfileCard},
 
         data () {
@@ -47,15 +46,7 @@
 
         methods: {
             load () {
-                this.getStaff(this.$route.params.id).then(staff => {
-                    this.staff = staff;
-
-                    this.logAccession(
-                        'staff',
-                        this.staff.id,
-                        this.$route.query.from ? 'search' : 'page',
-                    );
-                });
+                this.getStaff(this.$route.params.id).then(staff => this.staff = staff);
             },
         },
     };

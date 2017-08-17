@@ -34,20 +34,26 @@
             search (queryString, callback) {
                 axios.get(laroute.route('search'), {params: {query: queryString}}).then(response => {
                     const typeMap = {
-                        staff: '职员',
-                        group: '分组',
+                        staff: {name: '职员', route: item => '/staff/' + item.id},
+                        group: {name: '分组', route: item => `departments/${item.department_id}?group=${item.id}`},
                     };
 
                     let result = [];
 
                     for (let type in typeMap) {
-                        if (response.data[type])
-                            for (let item of response.data[type]) {
-                                result.push({
-                                    address: item.id,
-                                    value: `[${typeMap[type]}] ${item.name}`,
-                                });
-                            }
+                        if (!response.data[type])
+                            continue;
+
+                        for (let item of response.data[type]) {
+                            const mapItem = typeMap[type];
+
+                            result.push({
+                                type,
+                                address: item.id,
+                                value: `[${mapItem.name}] ${item.name}`,
+                                route: mapItem.route(item),
+                            });
+                        }
                     }
 
                     callback(result);
@@ -57,7 +63,13 @@
             handleSelect (item) {
                 this.query = '';
 
-                this.$router.push(`/staff/${item.address}?from=search`);
+                vue.$emit('log-access', {
+                    type: 'search',
+                    origin: item.type,
+                    object: item.address,
+                });
+
+                this.$router.push(item.route);
             },
         },
     };

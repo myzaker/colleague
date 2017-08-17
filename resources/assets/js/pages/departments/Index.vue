@@ -3,7 +3,8 @@
         <router-link class="card-list-item"
                      v-for="department in departments"
                      :key="department.id"
-                     :to="'/departments/' + department.id">
+                     :to="'/departments/' + department.id"
+                     v-accesslog="'department.page.'+department.id">
             <el-card>
                 {{department.name}}
                 <span class="stat muted-text">{{department.stat}}人</span>
