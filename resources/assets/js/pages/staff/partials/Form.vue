@@ -142,7 +142,10 @@
                     department_id: [{validator: requireSelect, message: '请选择部门', trigger: 'change'}],
                     job: [{required: true, message: '请输入职位', trigger: 'blur'}],
                     name: [{required: true, message: '请输入姓名', trigger: 'blur'}],
-                    email: [{required: true, message: '请输入工作邮箱', trigger: 'blur'}],
+                    email: [
+                        {required: true, message: '请输入工作邮箱', trigger: 'blur'},
+                        {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change'},
+                    ],
                 },
             };
         },
