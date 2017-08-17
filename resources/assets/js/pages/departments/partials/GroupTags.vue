@@ -15,7 +15,7 @@
                         v-model="showPopover"
                         @show="onPopoverShowed">
                 <el-form>
-                    <el-form-item label="新分组名">
+                    <el-form-item label="新分组名" style="margin-bottom: 5px">
                         <el-input
                                 ref="newTagInput"
                                 v-model="newTagName"
