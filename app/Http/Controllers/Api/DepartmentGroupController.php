@@ -38,6 +38,10 @@ class DepartmentGroupController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create-resource');
+        $this->validate($request, [
+            'department_id' => 'required',
+            'name'          => 'required',
+        ]);
 
         return Group::create($request->all());
     }
@@ -82,7 +86,9 @@ class DepartmentGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
     }
 
     /**
