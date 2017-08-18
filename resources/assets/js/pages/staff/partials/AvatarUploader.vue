@@ -4,10 +4,11 @@
             action="http://up.imgapi.com"
             :data="params"
             :show-file-list="false"
+            :on-progress="handleUploadProgress"
             :on-success="handleUploadSuccess">
         <img v-if="value" :src="value">
-
-        <i v-else class="el-icon-plus"></i>
+        <!--<i v-else class="el-icon-plus"></i>-->
+        <div class="upload-progress" v-else>{{percent}}</div>
     </el-upload>
 </template>
 
@@ -15,8 +16,8 @@
     @size: 100px;
 
     #uploader {
-        i {
-            font-size: 28px;
+        .upload-progress {
+            font-size: 10px;
             color: #8c939d;
             width: @size;
             height: @size;
@@ -52,12 +53,17 @@
 
             return {
                 params: {Token: token},
+                percent: '0%',
+
             };
         },
 
         methods: {
             handleUploadSuccess (res, file) {
                 this.$emit('input', res.s_url);
+            },
+            handleUploadProgress (event, file, fileList) {
+                this.percent=Math.round(event.percent)+'%';
             },
         },
     };
