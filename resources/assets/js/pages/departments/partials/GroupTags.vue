@@ -14,16 +14,13 @@
                         placement="bottom-end"
                         v-model="showPopover"
                         @show="onPopoverShowed">
-                <el-form>
-                    <el-form-item label="新分组名" style="margin-bottom: 5px">
-                        <el-input
-                                ref="newTagInput"
-                                v-model="newTagName"
-                                @keyup.enter.native="handleInputConfirm"
-                                @keyup.esc.native="showPopover=false"
-                        ></el-input>
-                    </el-form-item>
-                </el-form>
+                <el-input
+                        ref="newTagInput"
+                        v-model="newTagName"
+                        @keyup.enter.native="handleInputConfirm"
+                        @keyup.esc.native="showPopover=false"
+                        placeholder="新分组名"
+                ></el-input>
             </el-popover>
 
             <el-button size="small"
