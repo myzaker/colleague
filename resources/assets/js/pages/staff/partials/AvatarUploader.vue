@@ -4,9 +4,10 @@
             action="http://up.imgapi.com"
             :data="params"
             :show-file-list="false"
+            :on-progress="handleUploadProgress"
             :on-success="handleUploadSuccess">
         <img v-if="value" :src="value">
-
+        <div v-else-if="showPlus==false" class="upload-progress">{{percent}}</div>
         <i v-else class="el-icon-plus"></i>
     </el-upload>
 </template>
@@ -15,13 +16,17 @@
     @size: 100px;
 
     #uploader {
-        i {
+        i, .upload-progress {
             font-size: 28px;
             color: #8c939d;
             width: @size;
             height: @size;
             line-height: @size;
             text-align: center;
+        }
+
+        .upload-progress {
+            font-size: 10px;
         }
 
         img {
@@ -52,12 +57,19 @@
 
             return {
                 params: {Token: token},
+                percent: '0%',
+                showPlus: true,
             };
         },
 
         methods: {
             handleUploadSuccess (res, file) {
+                this.showPlus = true;
                 this.$emit('input', res.s_url);
+            },
+            handleUploadProgress (event, file, fileList) {
+                this.showPlus = false;
+                this.percent  = Math.round(event.percent) + '%';
             },
         },
     };
