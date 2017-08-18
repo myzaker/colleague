@@ -7,7 +7,7 @@
             :on-progress="handleUploadProgress"
             :on-success="handleUploadSuccess">
         <img v-if="value" :src="value">
-        <div v-else-if="showPlus==false" class="upload-progress">{{percent}}</div>
+        <div v-else-if="!showIcon" id="progress">{{percent}}%</div>
         <i v-else class="el-icon-plus"></i>
     </el-upload>
 </template>
@@ -16,23 +16,23 @@
     @size: 100px;
 
     #uploader {
-        i, .upload-progress {
+        img {
+            width: @size;
+            height: @size;
+            display: block;
+        }
+
+        i {
+            .indicator;
             font-size: 28px;
+        }
+
+        .indicator {
             color: #8c939d;
             width: @size;
             height: @size;
             line-height: @size;
             text-align: center;
-        }
-
-        .upload-progress {
-            font-size: 10px;
-        }
-
-        img {
-            width: @size;
-            height: @size;
-            display: block;
         }
 
         .el-upload {
@@ -44,6 +44,11 @@
             &:hover {
                 border-color: #fb4747;
             }
+        }
+
+        #progress {
+            .indicator;
+            font-size: 12px;
         }
     }
 </style>
@@ -57,19 +62,21 @@
 
             return {
                 params: {Token: token},
-                percent: '0%',
-                showPlus: true,
+                percent: 0,
+                showIcon: true,
             };
         },
 
         methods: {
             handleUploadSuccess (res, file) {
-                this.showPlus = true;
+                this.showIcon = true;
+
                 this.$emit('input', res.s_url);
             },
+
             handleUploadProgress (event, file, fileList) {
-                this.showPlus = false;
-                this.percent  = Math.round(event.percent) + '%';
+                this.percent  = Math.round(event.percent);
+                this.showIcon = false;
             },
         },
     };
