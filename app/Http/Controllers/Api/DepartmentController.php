@@ -98,4 +98,20 @@ class DepartmentController extends Controller
     {
         //
     }
+
+    /**
+     *更新顺序
+     *
+     *
+     *
+     */
+    public function updateSort(Request $request)
+    {
+        $departments = $request->all();
+        foreach ($departments as $department) {
+            Department::where('id', $department['id'])->update(
+                ['sort' => $department['sort']]
+            );
+        }
+    }
 }
