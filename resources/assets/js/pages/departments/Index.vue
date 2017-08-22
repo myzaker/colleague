@@ -65,7 +65,12 @@
 
         methods: {
             load () {
-                this.loadDepartments().then(departments => this.departments = departments);
+                this.loadDepartments().then(departments => {
+                    this.departments = departments.sort(function (a, b) {
+                        return a.sort-b.sort;
+                    });
+                });
+
             },
 
             onEnd (evt) {
