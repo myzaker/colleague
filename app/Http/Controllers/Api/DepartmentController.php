@@ -100,10 +100,10 @@ class DepartmentController extends Controller
     }
 
     /**
-     *更新顺序
+     * 更新部门顺序
      *
-     *
-     *
+     * @param  \Illuminate\Http\Request $request
+     * @return null
      */
     public function updateSort(Request $request)
     {
@@ -113,5 +113,7 @@ class DepartmentController extends Controller
                 ['sort' => $department['sort']]
             );
         }
+
+        return;
     }
 }
