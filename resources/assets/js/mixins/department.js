@@ -4,7 +4,7 @@ export default {
             return axios.get(laroute.route('departments.index')).then(response => response.data);
         },
 
-        updateDepartmentsSort (departments) {
+        updateDepartmentSorts (departments) {
             const url = laroute.route('departments.sort');
 
             return axios.put(url, departments);

@@ -16,8 +16,8 @@ Route::get('search', 'Api\SearchController@search')->name('search');
 
 Route::resource('logs', 'Api\AccessLogController');
 
-Route::resource('departments.groups', 'Api\DepartmentGroupController');
 Route::put('departments/sort','Api\DepartmentController@updateSort')->name('departments.sort');
+Route::resource('departments.groups', 'Api\DepartmentGroupController');
 Route::resource('departments', 'Api\DepartmentController');
 
 Route::resource('staff', 'Api\StaffController');

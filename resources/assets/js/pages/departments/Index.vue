@@ -81,7 +81,7 @@
             },
 
             update (departments) {
-                this.updateDepartmentsSort(departments);
+                this.updateDepartmentSorts(departments);
             },
         },
     };
