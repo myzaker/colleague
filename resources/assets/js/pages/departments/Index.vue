@@ -44,13 +44,13 @@
     import Administration from '../../mixins/administration';
     import Department from '../../mixins/department';
     import Form from './mixins/form';
-    import draggable from 'vuedraggable';
+    import Draggable from 'vuedraggable';
 
     export default {
         mixins: [Form, Administration, Department],
 
         components: {
-            draggable,
+            Draggable,
         },
 
         data () {
