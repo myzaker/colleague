@@ -4,6 +4,12 @@ export default {
             return axios.get(laroute.route('departments.index')).then(response => response.data);
         },
 
+        updateDepartmentSorts (departments) {
+            const url = laroute.route('departments.sort');
+
+            return axios.put(url, departments);
+        },
+
         loadDepartmentGroups (department) {
             const url = laroute.route('departments.groups.index', {department});
 
