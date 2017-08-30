@@ -23,7 +23,7 @@
 
         computed: {
             image () {
-                return laroute.route('identicon', {string: this.string});
+                return route('identicon', {string: this.string}).toString();
             },
         },
     };
