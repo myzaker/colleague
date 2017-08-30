@@ -23,7 +23,9 @@
 
         computed: {
             image () {
-                return route('identicon', {string: this.string}).toString();
+                if (typeof(this.string) != 'undefined') {
+                    return route('identicon', {string: this.string}).toString();
+                }
             },
         },
     };
