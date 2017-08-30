@@ -30,6 +30,7 @@
     </div>
 
     <!-- Scripts -->
+    @routes
     @if('production'==config('app.env'))
         <script src="//cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
         <script src="//cdn.bootcss.com/vuex/2.3.1/vuex.min.js"></script>
@@ -44,7 +45,6 @@
     @endif
 
     <script src="//cdn.bootcss.com/element-ui/1.4.2/index.js"></script>
-    <script src="{{ asset('js/laroute.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

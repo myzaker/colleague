@@ -37,6 +37,6 @@ window.vue = new Vue({
             this.logAccession(log.type, log.object, log.origin);
         });
 
-        axios.get(laroute.route('auth.user')).then(response => this.$store.commit('setAuth', response.data));
+        axios.get(route('auth.user')).then(response => this.$store.commit('setAuth', response.data));
     },
 });

@@ -23,7 +23,9 @@
 
         computed: {
             image () {
-                return laroute.route('identicon', {string: this.string});
+                if (typeof(this.string) != 'undefined') {
+                    return route('identicon', {string: this.string}).toString();
+                }
             },
         },
     };
