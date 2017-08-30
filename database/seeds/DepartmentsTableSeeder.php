@@ -13,8 +13,11 @@ class DepartmentsTableSeeder extends Seeder
     {
         factory(App\Department::class, 10)->create();
 
-        DB::table('departments')->where('id', 1)->update([
-            'name' => '技术一部',
+        $department = \App\Department::find(1);
+
+        $department->update([
+            'head_id' => $department->staff()->skip(1)->first()->id,
+            'name'    => '技术一部',
         ]);
     }
 }
