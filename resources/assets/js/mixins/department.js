@@ -4,12 +4,6 @@ export default {
             return axios.get(route('departments.index')).then(response => response.data);
         },
 
-        updateDepartmentSorts (departments) {
-            const url = route('departments.sort');
-
-            return axios.put(url, departments);
-        },
-
         loadDepartmentGroups (department) {
             const url = route('departments.groups.index', {department});
 
@@ -44,6 +38,10 @@ export default {
             const url = route('departments.update', {department: id});
 
             return axios.put(url, department);
+        },
+
+        updateDepartmentSorts (departments) {
+            return axios.put(route('departments.sort'), departments);
         },
     },
 };

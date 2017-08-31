@@ -1,8 +1,6 @@
 <template>
     <div>
-        <draggable v-model="departments"
-                   @end="onEnd"
-        >
+        <draggable v-model="departments" @end="onDropped">
             <router-link class="card-list-item"
                          v-for="department in departments"
                          :key="department.id"
@@ -60,6 +58,12 @@
         },
 
         mounted () {
+            // Fix drop bugs in Firefox
+            document.body.ondrop = event => {
+                event.preventDefault();
+                event.stopPropagation();
+            };
+
             this.load();
         },
 
@@ -67,21 +71,15 @@
             load () {
                 this.loadDepartments().then(departments => {
                     this.departments = departments.sort(function (a, b) {
-                        return a.sort-b.sort;
+                        return a.sort - b.sort;
                     });
                 });
 
             },
 
-            onEnd (evt) {
-                this.departments.map(function (department, index) {
-                    department.sort = index;
-                });
-                this.update(this.departments);
-            },
-
-            update (departments) {
-                this.updateDepartmentSorts(departments);
+            onDropped () {
+                this.departments.map((department, index) => department.sort = index);
+                this.updateDepartmentSorts(this.departments);
             },
         },
     };
