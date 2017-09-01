@@ -6,7 +6,16 @@
         <el-form-item prop="name" label="名称">
             <el-input v-model="form.name"></el-input>
         </el-form-item>
-
+        <el-form-item prop="description" label="负责人">
+            <el-select v-model="form.head_id" filterable placeholder="请选择">
+                <el-option
+                        v-for="staff in staffs"
+                        :key="staff.id"
+                        :label="staff.name"
+                        :value="staff.id">
+                </el-option>
+            </el-select>
+        </el-form-item>
         <el-form-item prop="description" label="描述">
             <el-input
                     type="textarea"
@@ -36,9 +45,11 @@
 
         data () {
             return {
+                staffs: '',
                 form: {
                     name: '',
                     description: '',
+                    head_id: '',
                 },
                 rules: {
                     name: [{required: true, message: '请输入部门名称', trigger: 'blur'}],
@@ -50,6 +61,8 @@
             if (this.data) {
                 this.form.name        = this.data.name;
                 this.form.description = this.data.description;
+                this.staffs           = this.data.staff;
+                this.form.head_id     = this.data.head_id;
             }
         },
 
@@ -58,7 +71,6 @@
                 this.$refs.form.validate((valid) => {
                     if (!valid)
                         return false;
-
                     (this.data
                             ? this.updateDepartment(this.data.id, this.form)
                             : this.createDepartment(this.form)
