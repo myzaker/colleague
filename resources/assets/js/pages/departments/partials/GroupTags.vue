@@ -4,8 +4,7 @@
                 v-for="group in groups"
                 :key="group.id"
                 :type="current == group.id ? 'danger':null"
-                @click.native="switchGroup(group.id)"
-                v-accesslog="'group.page.'+group.id">
+                @click.native="switchGroup(group.id), emitLogEvent('group.page.'+group.id)">
             {{group.name}}
         </el-tag>
 

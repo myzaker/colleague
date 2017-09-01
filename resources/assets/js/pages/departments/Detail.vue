@@ -10,7 +10,7 @@
                      v-for="staff in staffList"
                      :key="staff.id"
                      :to="'/staff/' + staff.id"
-                     v-accesslog="'staff.page.'+staff.id">
+                     @click.native="emitLogEvent('staff.page.'+staff.id)">
             <staff-card :staff="buildStaff(staff)"/>
         </router-link>
 
