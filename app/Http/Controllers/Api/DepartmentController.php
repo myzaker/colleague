@@ -17,6 +17,7 @@ class DepartmentController extends Controller
     {
         return Department::all()->map(function (Department $department) {
             $department['stat'] = $department->staff()->count();
+            $department['head'] = $department->staff()->find($department['head_id']);
 
             return $department;
         });
