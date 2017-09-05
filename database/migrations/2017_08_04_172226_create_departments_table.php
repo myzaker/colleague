@@ -18,7 +18,7 @@ class CreateDepartmentsTable extends Migration
             $table->integer('head_id')->unsigned()->nullable();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('sort')->unsigned()->default(0);
+            $table->integer('sort')->unsigned()->nullable();
             $table->timestamps();
         });
     }

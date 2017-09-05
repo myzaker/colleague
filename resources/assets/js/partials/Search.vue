@@ -32,7 +32,7 @@
 
         methods: {
             search (queryString, callback) {
-                axios.get(laroute.route('search'), {params: {query: queryString}}).then(response => {
+                axios.get(route('search'), {params: {query: queryString}}).then(response => {
                     const typeMap = {
                         staff: {name: '职员', route: item => '/staff/' + item.id},
                         group: {name: '分组', route: item => `departments/${item.department_id}?group=${item.id}`},

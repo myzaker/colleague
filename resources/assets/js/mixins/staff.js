@@ -1,17 +1,17 @@
 export default {
     methods: {
         getStaff (id) {
-            const url = laroute.route('staff.show', {staff: id});
+            const url = route('staff.show', {staff: id});
 
             return axios.get(url).then(response => response.data);
         },
 
         createStaff (profile) {
-            return axios.post(laroute.route('staff.store'), profile);
+            return axios.post(route('staff.store'), profile);
         },
 
         updateStaff (id, profile) {
-            return axios.put(laroute.route('staff.update', {staff: id}), profile);
+            return axios.put(route('staff.update', {staff: id}), profile);
         },
     },
 };
