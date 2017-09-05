@@ -8,6 +8,9 @@
                          @click.native="emitLogEvent('department.page.'+department.id)">
                 <el-card>
                     {{department.name}}
+                    <template v-if="department.head">
+                        （{{department.head.name}}）
+                    </template>
                     <span class="stat muted-text">{{department.stat}}人</span>
                 </el-card>
             </router-link>
